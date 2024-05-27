@@ -22,7 +22,13 @@ import FooterLaber from './components/FooterLabel.vue'
         <Footer class="bg-white"><FooterLaber /> </Footer>
       </Layout>
     </Sider>
-    <Content class="content"><RouterView /></Content>
+    <Content class="w-max flex flex-wrap justify-center content overflow-auto"
+      ><router-view v-slot="{ Component }" style="max-width: 900px" class="justify-center">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </Content>
   </Layout>
 </template>
 

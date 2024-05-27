@@ -21,6 +21,11 @@ export default defineComponent({
     const cminstance = ref<Editor>()
     const code = ref(`
     
+
+
+
+
+    
     `)
 
     const tags = {
