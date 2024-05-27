@@ -3,7 +3,9 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
-  download: (url: string) => ipcRenderer.invoke('downloadFile', url)
+  download: (url: string) => ipcRenderer.invoke('downloadFile', url),
+  onDownloadProgress: (callback) =>
+    ipcRenderer.on('onDownloadProgress', (_event, value) => callback(value))
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

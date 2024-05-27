@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import CodeClipboard from './components/CodeClipboard.vue'
 import { ref } from 'vue'
+// ref绑定数据到页面
+const pathRef = ref('')
+const progress = ref(0)
+window.api.onDownloadProgress((value) => {
+  const type = value.split(':')[0]
+  const progressData = value.split(':')[1]
+  console.log(value, type, progressData)
+  if (type == 'rate') {
+    progress.value = parseInt(progressData)
+  } else {
+    progress.value = parseInt(progressData)
+  }
+})
 const testBtn = async () => {
   console.log(window)
   // 下载文件
@@ -13,9 +26,6 @@ const testBtn = async () => {
   console.log(resData)
   pathRef.value = resData.split(',')[0]
 }
-
-// ref绑定数据到页面
-const pathRef = ref('')
 </script>
 
 <template>
@@ -24,6 +34,7 @@ const pathRef = ref('')
       <div>输入xml坐标</div>
       <div><CodeClipboard /></div>
       <div><Button @click="testBtn">选择目录</Button></div>
+      <div>{{ progress }}</div>
       <div>{{ pathRef }}</div>
     </div>
   </div>

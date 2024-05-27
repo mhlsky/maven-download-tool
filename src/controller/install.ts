@@ -25,8 +25,10 @@ export function downloadFile(mainWin: BrowserWindow) {
           const percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
           console.log(`progress: ${percentCompleted}%`)
           mainWin.setProgressBar(percentCompleted / 100)
+          mainWin.webContents.send('onDownloadProgress', 'rate:' + percentCompleted)
         } else {
           console.log(`progress(total:undefined): ${progressEvent.loaded}`)
+          mainWin.webContents.send('onDownloadProgress', 'loaded:' + progressEvent.loaded)
         }
       }
     })
