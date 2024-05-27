@@ -1,6 +1,7 @@
 // electron-store的存取额操作
 // import Store from 'electron-store'
 import { ipcMain as IPC } from 'electron'
+
 /* 
 const store = new Store()
 
